@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="SoundFiles"/>
+	<classpathentry kind="lib" path="C:/Users/RaptorTheThird/Documents/eclipse/ProjektLachs2/lib/enigma-console.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/C:/Users/RaptorTheThird/Documents/eclipse/ProjektLachs2/lib/javadoc/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

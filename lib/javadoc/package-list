@@ -1,0 +1,8 @@
+enigma.console
+enigma.console.java2d
+enigma.console.remote
+enigma.console.terminal
+enigma.core
+enigma.event
+enigma.loaders
+enigma.shells.commandline
