@@ -102,6 +102,8 @@ public class LachsServer {
 		initLachsUser();
 		
 		mainloop();		
+		
+		int i = 1;i++;//ignoreme
 	}
 	
 	
