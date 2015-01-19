@@ -255,7 +255,9 @@ public class Crypt1337{
 								temp[u] = '3';
 								u++;
 	         			break;
-	         		case '.':  	temp[u] = 'S' ;
+	         		case '.':  	temp[u] = ' ';
+	         					u++;	
+	         					temp[u] = 'S' ;
 								u++;
 								temp[u] = 't';
 								u++;
@@ -263,6 +265,8 @@ public class Crypt1337{
 								u++;
 								temp[u] = 'p';
 								u++;		
+								temp[u] = ' ';
+								u++;	
 						break;
 					default:    temp[u] = text[i];
 								u++;
