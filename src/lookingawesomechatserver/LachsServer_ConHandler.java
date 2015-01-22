@@ -53,7 +53,8 @@ public class LachsServer_ConHandler extends Thread {
 			while(listenChannel.getLocalAddress() == null)// sicherheitsabfrage falls port belegt ist
 			{
 				try{
-					listenChannel.bind(new InetSocketAddress(host,this.port));
+					listenChannel.bind(new InetSocketAddress(host,this.port));// hostname ist optional! so ists nen featuere
+					
 					
 				}catch(Exception e){
 					this.port++;

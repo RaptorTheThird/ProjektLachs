@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="SoundFiles"/>
-	<classpathentry kind="lib" path="C:/Users/Janina/git/ProjektLachs/lib/enigma-console.jar">
+	<classpathentry kind="lib" path="C:/Users/RaptorTheThird/Documents/eclipse/ProjektLachs2/lib/enigma-console.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/RaptorTheThird/Documents/eclipse/ProjektLachs2/lib/javadoc/"/>
 		</attributes>

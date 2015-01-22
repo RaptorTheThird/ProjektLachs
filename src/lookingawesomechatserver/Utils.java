@@ -30,10 +30,8 @@ public class Utils {
 		
 		lc = new LachsLanguageController(language);
 		
-		wavInit();
-		
-	}
-	
+		wavInit();		
+	}	
 	
 	public void wavPlay(String wavName)
 	{
@@ -140,6 +138,7 @@ public class Utils {
 			{
 			
 				ArrayList<String> IPs = new ArrayList<String>();
+				IPs.add("localhost");
 				
 				Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 				while (interfaces.hasMoreElements())// für alle elemente der NetzwerkInterfaces

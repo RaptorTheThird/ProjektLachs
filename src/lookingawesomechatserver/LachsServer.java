@@ -82,7 +82,7 @@ public class LachsServer {
 	public static int SECURITY_PWHASH_ITERATIONS = 1000;
 	public static String SECURTIY_PWHASH_SALT = "L4Ch5";	
 	
-	private static int serverport = 12321;
+	private static int serverport = 4711;
 	private static String serverip = "localhost";
 	
 	private static LachsServer_ConHandler ubs;

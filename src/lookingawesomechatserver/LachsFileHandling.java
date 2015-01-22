@@ -106,12 +106,12 @@ public class LachsFileHandling {
 					e.printStackTrace();
 				}			
 		}
-		System.out.println("..done");
+		//System.out.println("..done");
 	}
 	
 	public static void loadClientConfig(LachsClient lc,String LCCFileName)
 	{
-		System.out.println("loading Client data..");
+		//System.out.println("loading Client data..");
 		Properties prop = new Properties();
 		FileInputStream load = null;
 		
@@ -127,7 +127,7 @@ public class LachsFileHandling {
 			
 		}catch(Exception ex){
 			
-			System.out.println("configfile not found. using default settings..");
+			//System.out.println("configfile not found. using default settings..");
 			
 			lc.serverip = "localhost";
 			lc.serverport = 12321;
@@ -143,6 +143,6 @@ public class LachsFileHandling {
 				}
 			
 		}
-		System.out.println("..done");
+		//System.out.println("..done");
 	}
 }

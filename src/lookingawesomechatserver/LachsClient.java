@@ -58,8 +58,8 @@ public class LachsClient {
 		enigma.setTextAttributes(ta_y);System.out.println("           \\ \\ \\L\\ \\ \\ \\ \\/\\ \\ \\ \\ \\L\\ \\ \\ \\ \\ \\ \\  /\\ \\L\\ \\  ");
 		enigma.setTextAttributes(ta_g);System.out.println("            \\ \\____/  \\ \\_\\ \\_\\ \\ \\____/  \\ \\_\\ \\_\\ \\ `\\____\\ ");
 		enigma.setTextAttributes(ta_c);System.out.println("             \\/___/    \\/_/\\/_/  \\/___/    \\/_/\\/_/  \\/_____/ ");
-		enigma.setTextAttributes(ta_p);System.out.println("               LOOKING     AWESOME     CHAT    SERVICE        \\n");		
-		enigma.setTextAttributes(ta_b);System.out.println("            C O M E S   W I T H   E N C R Y P T I O N ! ! !");
+		enigma.setTextAttributes(ta_p);System.out.println("               LOOKING     AWESOME     CHAT    SERVICE        \n");		
+		enigma.setTextAttributes(ta_c);System.out.println("            C O M E S   W I T H   E N C R Y P T I O N ! ! !");
 		enigma.setTextAttributes(ta_y);System.out.println("                   NOW LESS RANDOM FEATURES!\n\n\n");
 		
 		
@@ -83,7 +83,7 @@ public class LachsClient {
 		
 		lcubs = new LachsClient_ConHandler(serverip, serverport, u, this);
 		
-		u.printGrayln("Attempting connection to "+serverip+":"+serverport+"...");
+		u.translatedSystemMessageOutput("INFO_ATTEMPTCONNECT",new String[]{serverip,String.valueOf(serverport)} ,Color.GRAY, "none");
 		lcubs.ConnectToNIOServer(null,null);				
 		lcubs.start();
 		
@@ -97,7 +97,7 @@ public class LachsClient {
 		
 		lcubs = new LachsClient_ConHandler(serverip, serverport, u, this);
 		
-		u.printGrayln("Attempting connection to "+serverip+":"+serverport+"...");
+		u.translatedSystemMessageOutput("INFO_ATTEMPTCONNECT", Color.GRAY, "wololo");
 		lcubs.ConnectToNIOServer(uname,passwd);				
 		lcubs.start();
 		
@@ -157,7 +157,7 @@ public class LachsClient {
 						case "/lpl":{actionLPL();break;}
 						case "/req":{actionLPL2();break;}						
 						case "/cd":{;break;}						
-						default:{u.printError("unknown command");}
+						default:{u.translatedSystemMessageOutput("ERROR_UNKNOWNCOMMAND", Color.RED, "zonk");}
 					}
 				}				
 			}		
@@ -168,13 +168,13 @@ public class LachsClient {
 	
 	private void actionLPL()
 	{
-		LachsPluginLoader lpl = new LachsPluginLoader(32123, "192.168.1.103",u,false);
+		LachsPluginLoader lpl = new LachsPluginLoader(32123, "localhost",u,false);
 		lpl.start();		
 	}
 	
 	private void actionLPL2()
 	{
-		LachsPluginLoader lpl = new LachsPluginLoader(32123, "192.168.1.103",u,true);
+		LachsPluginLoader lpl = new LachsPluginLoader(32123, "localhost",u,true);
 		lpl.FileSendInit(".\\SoundFiles\\epicwincassie.jpg");
 	}
 	
@@ -196,7 +196,7 @@ public class LachsClient {
 					passhash = LachsSecurtiy_HASH.generateHashLight(passwd);//LachsSecurtiy_HASH.generateStorngPasswordHash(passwd);
 										
 				} catch (Exception e) {
-					u.printError("Something with hashgeneration went wrong");
+					u.translatedSystemMessageOutput("ERROR_HASHGENERATION", Color.RED, "zonk");
 				}
 				
 				
@@ -228,15 +228,18 @@ public class LachsClient {
 					passhash = LachsSecurtiy_HASH.generateHashLight(passwd);//.generateStorngPasswordHash(passwd);
 										
 				} catch (Exception e) {
-					u.printError("Something with hashgeneration went wrong");
+					u.translatedSystemMessageOutput("ERROR_HASHGENERATION", Color.RED, "zonk");
 				}				
 				
 				startclient(slices[4],passhash);
 			}
-			else
-				u.printError("Wrong usage!\nPlease use: /connect [serverip] [serverport] as [username]");
+			else{
+				u.translatedSystemMessageOutput("ERROR_SYNTAX", Color.RED, "zonk");
+				u.translatedSystemMessageOutput("HELP_CONNECT", Color.GRAY, "none");
+			}
+				
 		}
-		else u.printError("Wrong number of arguments!");
+		else u.translatedSystemMessageOutput("ERROR_NOTENOUGHARGS", Color.RED, "zonk");
 	}
 	
 	public void actionConfigure(String cmd)
@@ -271,21 +274,26 @@ public class LachsClient {
 			{
 				try
 				{
-					if(slices[3].startsWith("none"))actionConfigureCryptNone();
-					if(slices[3].startsWith("caesar"))actionConfigureCryptCaesar();
-					if(slices[3].startsWith("vigenere"))actionConfigureCryptVigenere();
-					if(slices[3].startsWith("vigenereextended"))actionConfigureCryptVigenereExtended();
-					if(slices[3].startsWith("enigma"))actionConfigureCryptEnigma();
-					if(slices[3].startsWith("aes128"))actionConfigureCryptAes128();
 					
-					u.printGrayln("Cryptmode to "+this.cryptMode.toString()+" changed. To disable crypting choose 'None' as CryptMode.");
+					String cryptmode = slices[3].toLowerCase();
+					if(cryptmode.startsWith("none"))actionConfigureCryptNone();
+					if(cryptmode.startsWith("caesar"))actionConfigureCryptCaesar();
+					if(cryptmode.startsWith("vigenere"))actionConfigureCryptVigenere();
+					if(cryptmode.startsWith("vigenereextended"))actionConfigureCryptVigenereExtended();
+					if(cryptmode.startsWith("enigma"))actionConfigureCryptEnigma();
+					if(cryptmode.startsWith("aes128"))actionConfigureCryptAes128();
+					
+					u.translatedSystemMessageOutput("INFO_CRYPT",new String[]{slices[3].toUpperCase()}, Color.GRAY, "none");
 				}
 				catch(Exception e)
 				{
-					u.printError("Invalid CryptMode. Valid modes are: None, Caesar, Viginere, ViginereExtended, Enigma, AES128.");
+					u.translatedSystemMessageOutput("ERROR_CRYPTMODE", Color.RED, "zonk");
 				}						
 			}
-			else u.printError("Not enough arguments.\nPlease use '/configure crypt mode [mode]'\nAvailable Cryptmethods are:None, Caesar, Viginere, ViginereExtended, Enigma, AES128.");
+			else{
+				u.translatedSystemMessageOutput("ERROR_NOTENOUGHARGS", Color.RED, "zonk");
+				u.translatedSystemMessageOutput("ERROR_CRYPTMODE", Color.RED, "zonk");
+			}
 		}
 		if(slices[2].startsWith("key"))
 		{
@@ -294,7 +302,10 @@ public class LachsClient {
 				this.CryptKey = slices[3].trim();
 				u.printGrayln("CryptKey changed to '"+this.CryptKey.toString()+"'.");
 			}
-			else u.printError("Not enough arguments.\nPlease use '/configure crypt key [key]'");
+			else{
+				u.translatedSystemMessageOutput("ERROR_NOTENOUGHARGS", Color.RED, "zonk");
+				u.translatedSystemMessageOutput("INFO_CRYPTKEY", Color.GRAY, "wololo");
+			} 
 		}
 	}
 	private void actionConfigureCryptAes128()
@@ -331,7 +342,7 @@ public class LachsClient {
 	private void actionConfigureCryptEnigma()
 	{
 		int r1,r2,r3;
-		System.out.println("Please choose your Rotors. Available Rotors are: 1,2,3,4,5");
+		u.translatedSystemMessageOutput("INFO_CRYPTENIGMA", Color.GRAY, "wololo");
 		System.out.print("Rotor1:");
 		r1 = Integer.parseInt(enigma.readLine());
 		System.out.print("Rotor2:");
@@ -355,7 +366,10 @@ public class LachsClient {
 			
 			u.printGrayln("Settings changed: "+this.serverip+":"+this.serverport);
 		}
-		else u.printError("Not enough arguments.\nPlease use '/configure connection [serverip] [port]'");
+		else{ 
+			u.translatedSystemMessageOutput("ERROR_NOTENOUGHARGS", Color.RED, "zonk");
+			u.translatedSystemMessageOutput("INFO_CONNECTCONFIG", Color.RED, "zonk");
+		}
 	}
 	
 	public void actionConfigureColors(String[] slices)
@@ -383,8 +397,10 @@ public class LachsClient {
 			enigma.setTextAttributes(new TextAttributes(consoleColor));
 			u.printGrayln("Settings changed! Textcolor is now: "+slices[2].toUpperCase());
 		}
-		else u.printError("Not enough arguments.\nPlease use '/configure color [color]' \nSome Colors are: blue,green,yellow,orange,red,pink,etc.");
-		
+		else {
+		u.translatedSystemMessageOutput("ERROR_NOTENOUGHARGS", Color.RED, "zonk");
+		//+ "\nPlease use '/configure color [color]' \nSome Colors are: blue,green,yellow,orange,red,pink,etc.");
+		}
 	}
 	public static void main(String[] args) {
         
