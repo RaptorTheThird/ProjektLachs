@@ -283,6 +283,7 @@ public class LachsClient {
 					if(cryptmode.startsWith("enigma"))actionConfigureCryptEnigma();
 					if(cryptmode.startsWith("aes128"))actionConfigureCryptAes128();
 					
+					
 					u.translatedSystemMessageOutput("INFO_CRYPT",new String[]{slices[3].toUpperCase()}, Color.GRAY, "none");
 				}
 				catch(Exception e)
@@ -329,7 +330,26 @@ public class LachsClient {
 	}
 	private void actionConfigureCryptCaesar()
 	{
+		int cryptkey;
+		while(true)
+		{
+			System.out.print("VerschlüsselungsSchlüssel:");
+			try {
+				
+				cryptkey = Integer.parseInt(enigma.readLine());
+				
+			} catch (Exception e) {
+				System.out.println("dies ist keine Zahl!");
+				continue;
+			}
+			break;
+		}		
+		
+		CryptKey = cryptkey;
 		cryptMode = CryptMode.CEASAR;
+		
+		
+		
 	}
 	private void actionConfigureCryptVigenere()
 	{
